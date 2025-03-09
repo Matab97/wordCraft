@@ -17,7 +17,7 @@ services:
 
   frontend:
     build: 
-      context: ./frontend
+      context: ../wordCraft-front
       dockerfile: Dockerfile
     volumes:
       - ./frontend:/usr/share/nginx/html

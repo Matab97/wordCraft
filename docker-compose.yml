@@ -14,7 +14,7 @@ services:
 
   frontend:
     build: 
-      context: ./frontend
+      context: ../wordCraft-front
       dockerfile: Dockerfile
     ports:
       - "8082:80"
