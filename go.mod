@@ -1,4 +1,4 @@
-module goCourseProject
+module wordCraft
 
 go 1.22.0
 

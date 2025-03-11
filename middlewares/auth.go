@@ -1,9 +1,9 @@
 package middlewares
 
 import (
-	"goCourseProject/utils"
 	"net/http"
 	"strings"
+	"wordCraft/utils"
 
 	"github.com/gin-gonic/gin"
 )

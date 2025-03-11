@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"goCourseProject/middlewares"
+	"wordCraft/middlewares"
 
 	"github.com/gin-gonic/gin"
 )

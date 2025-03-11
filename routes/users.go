@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"goCourseProject/models"
-	"goCourseProject/utils"
 	"net/http"
+	"wordCraft/models"
+	"wordCraft/utils"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,9 +1,10 @@
 package main
 
 import (
-	"goCourseProject/db"
-	"goCourseProject/routes"
 	"os"
+	"wordCraft/db"
+	"wordCraft/routes"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

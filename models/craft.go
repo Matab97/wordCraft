@@ -5,11 +5,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"goCourseProject/db"
 	"net/http"
 	"os"
 	"strings"
 	"time"
+	"wordCraft/db"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

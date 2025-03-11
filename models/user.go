@@ -3,8 +3,8 @@ package models
 import (
 	"context"
 	"errors"
-	"goCourseProject/db"
-	"goCourseProject/utils"
+	"wordCraft/db"
+	"wordCraft/utils"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

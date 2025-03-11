@@ -12,7 +12,7 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o main .
+RUN GOOS=linux GOARCH=amd64 go build -o /main
 
 # Expose API port
 EXPOSE 8080

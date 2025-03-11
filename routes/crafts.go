@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"goCourseProject/models"
 	"net/http"
+	"wordCraft/models"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"

@@ -5,6 +5,8 @@ services:
     build: 
       context: .
       dockerfile: backend/Dockerfile
+      platforms:
+        - "linux/amd64"
     environment:
       - DEEPSEEK_API_KEY=sk-fc663842cc6c42a4ad1ec1ceac0f8ce2
     ports:
@@ -16,6 +18,8 @@ services:
     build: 
       context: ../wordCraft-front
       dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
     ports:
       - "8082:80"
     depends_on:
