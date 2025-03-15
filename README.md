@@ -1,3 +1,5 @@
+[![Docker](https://github.com/Matab97/wordCraft/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Matab97/wordCraft/actions/workflows/docker-publish.yml)
+
 # WordCraft
 
 WordCraft is a sophisticated word processing and text crafting application designed to enhance your writing experience.
