@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   backend:
-    image: gocourseproject-backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     environment:
       - DEEPSEEK_API_KEY=sk-fc663842cc6c42a4ad1ec1ceac0f8ce2
     ports:
@@ -11,7 +13,9 @@ services:
       - db
 
   frontend:
-    image: gocourseproject-frontend
+    build:
+      context: ../wordCraft-front
+      dockerfile: Dockerfile
     ports:
       - "8082:80"
     depends_on:
