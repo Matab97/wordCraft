@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"wordCraft/db"
 	"wordCraft/routes"
 
@@ -11,11 +10,8 @@ import (
 )
 
 func init() {
-	// Load .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// Load .env file if present (optional in k8s — env vars injected via Secret)
+	godotenv.Load()
 }
 
 func main() {
@@ -24,7 +20,7 @@ func main() {
 
 	// Configure CORS
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost", "http://your-domain.com"},
+		AllowOrigins:     []string{"http://localhost", "https://abbad.app", "https://www.abbad.app"},
 		AllowMethods:     []string{"GET", "POST"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
