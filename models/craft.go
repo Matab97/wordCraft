@@ -151,8 +151,11 @@ func AskAIToCraftPair(first string, second string) Craft {
 	combination := first + "+" + second
 	isNew := db.GetCollection("crafts").FindOne(context.Background(), bson.M{"name": name}).Err() != nil
 
-	// Get encyclopedia description async-style (generate with same call pattern)
-	description := GetCraftDescription(name, first, second)
+	// Generate description only for new crafts — cached in DB on save
+	var description string
+	if isNew {
+		description = GetCraftDescription(name, first, second)
+	}
 
 	return Craft{
 		Name:        name,
@@ -179,6 +182,14 @@ func (c *Craft) Save() error {
 	c.CreatedAt = time.Now()
 	_, err := collection.InsertOne(context.Background(), c)
 	return err
+}
+
+func UpdateDescription(name, description string) {
+	db.GetCollection("crafts").UpdateOne(
+		context.Background(),
+		bson.M{"name": name},
+		bson.M{"$set": bson.M{"description": description}},
+	)
 }
 
 func GetCrafts() []Craft {

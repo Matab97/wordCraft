@@ -41,26 +41,30 @@ func GetCraftTree(c *gin.Context) {
 	c.JSON(http.StatusOK, tree)
 }
 
-// GET /crafts/:name/describe — encyclopedia entry
+// GET /crafts/:name/describe — encyclopedia entry (DB-cached)
 func DescribeCraft(c *gin.Context) {
 	name := c.Param("name")
 
-	// Try to get from DB first
+	// Try DB first
 	var craft models.Craft
 	err := db.GetCollection("crafts").FindOne(context.Background(), bson.M{"name": name}).Decode(&craft)
 	if err == nil && craft.Description != "" {
-		c.JSON(http.StatusOK, gin.H{"name": craft.Name, "emoji": craft.Emoji, "description": craft.Description})
+		// Cache hit — no AI call
+		c.JSON(http.StatusOK, gin.H{"name": craft.Name, "emoji": craft.Emoji, "description": craft.Description, "cached": true})
 		return
 	}
 
-	// Generate fresh
+	// Cache miss — generate and persist
 	parts := []string{"", ""}
 	if craft.Combination != "" {
-		p := splitCombination(craft.Combination)
-		parts = p
+		parts = splitCombination(craft.Combination)
 	}
 	desc := models.GetCraftDescription(name, parts[0], parts[1])
-	c.JSON(http.StatusOK, gin.H{"name": name, "emoji": craft.Emoji, "description": desc})
+
+	// Save to DB so next request is free
+	models.UpdateDescription(name, desc)
+
+	c.JSON(http.StatusOK, gin.H{"name": name, "emoji": craft.Emoji, "description": desc, "cached": false})
 }
 
 func splitCombination(combo string) []string {

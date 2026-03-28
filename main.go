@@ -20,7 +20,7 @@ func main() {
 
 	// Configure CORS
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost", "https://abbad.app", "https://www.abbad.app"},
+		AllowOrigins:     []string{"http://localhost", "https://abbad.app", "https://www.abbad.app", "https://wordcraft.abbad.app"},
 		AllowMethods:     []string{"GET", "POST"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
